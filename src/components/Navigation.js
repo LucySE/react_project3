@@ -38,7 +38,7 @@ class Navigation extends React.Component {
                         </Link>
                     </NavItem>
                     <NavItem>
-                        <Link to="/contactus" className="nav-link">
+                        <Link to="/contact-us" className="nav-link">
                         Contact Us
                         </Link>
                     </NavItem>

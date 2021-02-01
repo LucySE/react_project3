@@ -1,32 +1,57 @@
 import React from 'react';
-import axios from 'axios';
+
+
+
+import DogPark from './DogParks';
+import SearchResults from './SearchResults';
+
+import { Route, Link, HashRouter as Router  } from 'react-router-dom';
 // Add this at the top of your file
 
 
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+// import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 
 
-const BASE_URL = 'http://localhost:3000/';
+
 
 class App extends React.Component {
 
-    render(){
-      return (
-        <div>
 
-          <Router>
-            <Navigation />
-            <Route exact path="/" component={ Home } />
-            <Route exact path="/procedures" component={ Procedures } />
-            <Route exact path="/proceduresearch" component={ ProcedureSearch } />
-            <Route exact path="/procedures/search/:query" component={ ProcedureSearchResults } />
-            <Route exact path="/teethshop" component={ TeethSales } />
-          </Router>
+  render(){
 
-        </div>
-      );
-    }
+    return (
+      <div className="Home">
+        <h1>Welcome to Dog Parking</h1>
 
-  } // class App
-  export default App;
+
+        <Router>
+        {/* Do we need a nav for the react pages? Or only for the rails pages? */}
+          <nav>
+            <Link to="/">Home</Link> |
+            <Link to="/dogparks">Search</Link>
+            <br />
+              <Route path="/" component={ DogPark } /> { /* appears on every route */ }
+          </nav>
+          <hr />
+            {
+
+
+            }
+          <Route exact path="/" component={ App } />
+          <Route exact path="/dogparks/:postal_code" component={ SearchResults } />
+
+        </Router>
+
+        <footer>
+          <hr />
+          &copy; 2021 Lucy Wirth
+        </footer>
+
+      </div>
+    ); // return
+
+  } // render()
+} // class App
+
+export default App;
