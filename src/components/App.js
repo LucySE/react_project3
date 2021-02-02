@@ -1,19 +1,16 @@
 import React from 'react';
 
 
-
-import DogPark from './DogParks';
+import Login from './Login';
+import Search from './Search';
 import SearchResults from './SearchResults';
+import Home from './Home';
 
 import { Route, Link, HashRouter as Router  } from 'react-router-dom';
 // Add this at the top of your file
 
 
 // import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-
-
-
-
 
 class App extends React.Component {
 
@@ -29,18 +26,17 @@ class App extends React.Component {
         {/* Do we need a nav for the react pages? Or only for the rails pages? */}
           <nav>
             <Link to="/">Home</Link> |
-            <Link to="/dogparks">Search</Link>
+            <Link to="/Search">Search</Link>|
+            <Link to="/Login">Login</Link>
             <br />
-              <Route path="/" component={ DogPark } /> { /* appears on every route */ }
+            <Route component={ Search } />
+          { /* appears on every route */ }
           </nav>
           <hr />
-            {
 
-
-            }
-          <Route exact path="/" component={ App } />
-          <Route exact path="/dogparks/:postal_code" component={ SearchResults } />
-
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/search/:postal_code/:radius"  component={ SearchResults } />
+          <Route component={ Login } /> 
         </Router>
 
         <footer>
