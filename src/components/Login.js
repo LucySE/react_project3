@@ -1,64 +1,68 @@
-import React from 'react';
-import fetch from 'isomorphic-fetch';
+import React from 'react'
+import axios from 'axios'
 
-class Login extends React.Component {
+const BASE_URL = 'http://localhost:3000'
 
-    state = {
-      email: '',
-      password: ''
-    };
-
-handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+class Login extends React.Component{
+  state = {
+    email: '',
+    password: ''
   }
-handleOnSubmit = (event) => {
-    event.preventDefault()
-    let request = {"auth": {"email": this.state.email, "password": this.state.password}}
-fetch('/api/user_token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(request)
-    })
-    .then(function(rsp){
-      if (!rsp.ok) {
-        throw Error(rsp.statusText);
+
+  //handle typing in the form
+  handleInput = (ev) => {
+      switch(ev.target.name){
+        case 'email':
+          this.setState({email: ev.target.value})
+          break;
+        case 'password':
+          this.setState({password: ev.target.value})
       }
-      return rsp.json()
-    })
-    .then((data) => localStorage.setItem("jwt", data.jwt))
-    .catch(error => {console.log(error)});
-  }
-render(){
-    return(
-      <form className="form" onSubmit={(event) => this.handleOnSubmit(event)}>
-        <label htmlFor="email">Email: </label>
-        <br />
-        <input
-          name="email"
-          id="email"
-          type="email"
-          value={this.state.email}
-          onChange={(event) => this.handleChange(event)}
-        />
-        <br /> <br />
-        <label htmlFor="password">Password: </label>
-        <br />
-        <input
-          name="password"
-          id="password"
-          type="password"
-          value={this.state.password}
-          onChange={(event) => this.handleChange(event)}
-          />
-        <br /><br />
-        <input type="submit" />
-          <br />
-      </form>
-    )
-  }
-}
-export default Login;
+    } //handleInput //handleInput
+
+  //handle the submit of the login
+  handleSubmit = (ev) => {
+   //create a request object we can pass through to knock
+   const request = {'email': this.state.email, 'password': this.state.password}
+
+   //do an axios post request where we can send through the user details to rails and login
+   axios.post(`${BASE_URL}/user_token`, {auth: request})
+   .then(result => {
+     localStorage.setItem("jwt", result.data.jwt)
+     axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.jwt;
+     this.props.setCurrentUser();
+     this.props.history.push('/my_profile');
+   })
+   .catch(err => {
+     console.warn(err)
+   })
+   ev.preventDefault();
+ }
+
+ render(){
+   return(
+     <form onSubmit={this.handleSubmit}>
+       <label>Login Form</label>
+       <br/>
+       <input
+         onChange={this.handleInput}
+         name="email"
+         type="email"
+         placeholder='Enter Email'
+       />
+       <br/>
+       <input
+         onChange={this.handleInput}
+         name="password"
+         type="password"
+         placeholder='Enter Password'
+       />
+       <br/>
+       <button>Login</button>
+     </form>
+
+   ); // return
+ }// render
+} // class Login
+
+export default Login
