@@ -10,7 +10,7 @@ import Home from './Home';
 import { Route, Link, HashRouter as Router  } from 'react-router-dom';
 // Add this at the top of your file
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'https://dog-parking-rails.herokuapp.com/'
 
 // import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 

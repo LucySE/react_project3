@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'https://dog-parking-rails.herokuapp.com/'
 
 
 class SearchResults extends React.Component {
@@ -51,7 +51,7 @@ class SearchResults extends React.Component {
           <ul>
             { this.state.dogparks.map(dogpark => <li>{dogpark.dogpark_name}</li>)}
           </ul>
-  
+
         ); // return
     } // render
 } // class SearchResults
