@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/LucySE/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/LucySE/static/js/main.d9995932.chunk.js",
-    "main.js.map": "/LucySE/static/js/main.d9995932.chunk.js.map",
+    "main.js": "/LucySE/static/js/main.a6034826.chunk.js",
+    "main.js.map": "/LucySE/static/js/main.a6034826.chunk.js.map",
     "runtime-main.js": "/LucySE/static/js/runtime-main.2342414d.js",
     "runtime-main.js.map": "/LucySE/static/js/runtime-main.2342414d.js.map",
     "static/css/2.658248ec.chunk.css": "/LucySE/static/css/2.658248ec.chunk.css",
-    "static/js/2.22d93f43.chunk.js": "/LucySE/static/js/2.22d93f43.chunk.js",
-    "static/js/2.22d93f43.chunk.js.map": "/LucySE/static/js/2.22d93f43.chunk.js.map",
+    "static/js/2.5f103c04.chunk.js": "/LucySE/static/js/2.5f103c04.chunk.js",
+    "static/js/2.5f103c04.chunk.js.map": "/LucySE/static/js/2.5f103c04.chunk.js.map",
     "static/js/3.931cd785.chunk.js": "/LucySE/static/js/3.931cd785.chunk.js",
     "static/js/3.931cd785.chunk.js.map": "/LucySE/static/js/3.931cd785.chunk.js.map",
     "index.html": "/LucySE/index.html",
     "static/css/2.658248ec.chunk.css.map": "/LucySE/static/css/2.658248ec.chunk.css.map",
     "static/css/main.6dea0f05.chunk.css.map": "/LucySE/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.22d93f43.chunk.js.LICENSE.txt": "/LucySE/static/js/2.22d93f43.chunk.js.LICENSE.txt"
+    "static/js/2.5f103c04.chunk.js.LICENSE.txt": "/LucySE/static/js/2.5f103c04.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2342414d.js",
     "static/css/2.658248ec.chunk.css",
-    "static/js/2.22d93f43.chunk.js",
+    "static/js/2.5f103c04.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.d9995932.chunk.js"
+    "static/js/main.a6034826.chunk.js"
   ]
 }
