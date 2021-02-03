@@ -26,25 +26,19 @@ class App extends React.Component {
   }
 
   //function to set the state to the current logged in user
+
   setCurrentUser = () => {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios.defaults.headers.common['Authorization'] = token;
+    axios.get(`${BASE_URL}/users/current`)
+    .then(res => {
+      console.log("user", res.data);
+      this.setState({currentUser: res.data})
+    })
+    .catch(err => console.warn(err))
   }
 
-  //function to log the user out.
   handleLogout = () => {
-  }
-  setCurrentUser = () => {
-      let token = "Bearer " + localStorage.getItem("jwt");
-      axios.get(`${BASE_URL}/users/current`, {
-        headers: {
-          'Authorization': token
-        }
-      })
-      .then(res => {
-        this.setState({currentUser: res.data})
-      })
-      .catch(err => console.warn(err))
-    }
-    handleLogout = () => {
     this.setState({currentUser: undefined})
     localStorage.removeItem("jwt");
     axios.defaults.headers.common['Authorization'] = undefined;
@@ -86,11 +80,13 @@ class App extends React.Component {
           { /* appears on every route */ }
           </nav>
           <hr />
-            <Route exact path='/my_profile' component={MyProfile}/>
-                    <Route
-                      exact path='/login'
-                      render={(props) => <Login setCurrentUser={this.setCurrentUser}{...props}/>}
-                      />
+            <Route exact path='/my_profile'
+              render={(props) => <MyProfile user={this.state.currentUser}{...props}/>}
+            />
+            <Route
+              exact path='/login'
+              render={(props) => <Login setCurrentUser={this.setCurrentUser}{...props}/>}
+            />
           <Route exact path="/" component={ Home } />
           <Route exact path="/search/:postal_code/:radius"  component={ SearchResults } />
 

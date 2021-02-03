@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost3000' 
 
 class Login extends React.Component{
   state = {
@@ -29,7 +29,6 @@ class Login extends React.Component{
    axios.post(`${BASE_URL}/user_token`, {auth: request})
    .then(result => {
      localStorage.setItem("jwt", result.data.jwt)
-     axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.jwt;
      this.props.setCurrentUser();
      this.props.history.push('/my_profile');
    })
