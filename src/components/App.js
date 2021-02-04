@@ -7,10 +7,12 @@ import MyProfile from './MyProfile'
 import Search from './Search';
 import SearchResults from './SearchResults';
 import BookingConfirmation from './BookingConfirmation';
+import './App.css';
 
 
 import Home from './Home';
 import {config} from './Constants'
+
 
 
 import { Route, Link, HashRouter as Router  } from 'react-router-dom';
@@ -55,7 +57,7 @@ class App extends React.Component {
 
     return (
       <div className="Home">
-        <h1><img src="https://res.cloudinary.com/do9y9tnbr/image/upload/v1612424564/dogpark_photos/dog_parking_logo_pbxj6m.png"/></h1>
+        // <h1><img src="https://res.cloudinary.com/do9y9tnbr/image/upload/v1612424564/dogpark_photos/dog_parking_logo_pbxj6m.png"/></h1>
 
 
         <Router>
