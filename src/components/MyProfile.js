@@ -2,43 +2,38 @@ import React from 'react'
 
 
 
-
 class MyProfile extends React.Component{
-  // state = {
-  //   currentUser: {
-  //     name: '',
-  //     email: ''
-  //   }
-  // }
 
-  // componentDidMount(){
-  //   let token = "Bearer " + localStorage.getItem("jwt");
-  //   axios.get(`${BASE_URL}/users/current`, {
-  //     headers: {
-  //       'Authorization': token
-  //     }
-  //   })
-  //   .then(res => {
-  //     this.setState({currentUser: res.data})
-  //   })
-  //   .catch(err => console.warn(err))
-  // }
 
-  render(){
+  render() {
     if(this.props.user === undefined){
       return <p>Loading..</p>;
 
     }
 
-    return(
-      <div>
-        <h1>Hello {this.props.user.name}</h1>
-        <h4>Your email is {this.props.user.email}</h4>
+    return (
+    <div>
+      <h1>Hello {this.props.user.name}!</h1>
+      <p>We love {this.props.user.dog_name}.</p>
+       <p>Your email is {this.props.user.email}.</p>
+       <h2>{this.props.user.dog_name}'s bookings</h2>
+       <ul>
+       {
+          this.props.user.bookings.map(booking => (
+            <li>
+              {
+                new Date(booking.booking_start_date).toLocaleString('en-AU')
+              }
+              <br/>
+              <img src={booking.photo} width="400" height="267" />
+            </li>
+          ))
+        }
+        </ul>
       </div>
-    );
-  }//render
+      ); //return
+    }//render
 
 }//class MyProfile
-
 
 export default MyProfile

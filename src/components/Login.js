@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {config} from './Constants'
 
-const BASE_URL = 'https://dog-parking-rails.herokuapp.com'
 
 class Login extends React.Component{
   state = {
@@ -26,7 +26,7 @@ class Login extends React.Component{
    const request = {'email': this.state.email, 'password': this.state.password}
 
    //do an axios post request where we can send through the user details to rails and login
-   axios.post(`${BASE_URL}/user_token`, {auth: request})
+   axios.post(`${config.url.API_URL}/user_token`, {auth: request})
    .then(result => {
      localStorage.setItem("jwt", result.data.jwt)
      this.props.setCurrentUser();

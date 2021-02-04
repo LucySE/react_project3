@@ -1,10 +1,10 @@
 import React from 'react';
 
 import axios from 'axios';
+import {config} from './Constants'
 
+import { Link } from 'react-router-dom';
 
-
-const BASE_URL = 'https://dog-parking-rails.herokuapp.com/'
 
 
 class SearchResults extends React.Component {
@@ -15,10 +15,13 @@ class SearchResults extends React.Component {
 
     fetchDogparks = () => {
 
-      axios.get( BASE_URL + "/search", {
+      axios.get( config.url.API_URL + "/search", {
         params: {
           postcode: this.props.match.params.postal_code,
-          radius: this.props.match.params.radius
+          radius: this.props.match.params.radius,
+          booking_start_date: this.props.match.params.booking_start_date,
+          booking_end_date: this.props.match.params.booking_end_date
+
         }
       })
       .then( (res) => {
@@ -36,11 +39,15 @@ class SearchResults extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-      const {postal_code, radius} = this.props.match.params;
+      const {postal_code, radius, booking_start_date, booking_end_date} = this.props.match.params;
       if(
         postal_code !== prevProps.match.params.postal_code
         ||
         radius !== prevProps.match.params.radius
+        ||
+        booking_start_date !== prevProps.match.params.booking_start_date
+        ||
+        booking_end_date !== prevProps.match.params.booking_end_date
        ){
       this.fetchDogparks();
       }
@@ -49,7 +56,14 @@ class SearchResults extends React.Component {
     render() {
         return (
           <ul>
-            { this.state.dogparks.map(dogpark => <li>{dogpark.dogpark_name}</li>)}
+
+          { this.state.dogparks.map(dogpark => (
+                <li>
+                   <Link to={`/dogparks/${dogpark.id}/book/${this.props.match.params.booking_start_date}/${this.props.match.params.booking_end_date}`}>
+                    {dogpark.dogpark_name}
+                  </Link>
+                </li>
+              ))}
           </ul>
 
         ); // return
